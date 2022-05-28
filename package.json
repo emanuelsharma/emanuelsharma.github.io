@@ -1,0 +1,26 @@
+{
+  "name": "emanuelsharma.github.io",
+  "version": "1.0.0",
+  "description": "Website for portfolio",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emanuelsharma/emanuelsharma.github.io.git"
+  },
+  "author": "Emanuel Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emanuelsharma/emanuelsharma.github.io/issues"
+  },
+  "homepage": "https://github.com/emanuelsharma/emanuelsharma.github.io#readme",
+  "dependencies": {
+    "three": "^0.141.0"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

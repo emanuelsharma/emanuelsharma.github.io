@@ -111,32 +111,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 #hero .container {
   position: absolute;
-  top: 50%;
-  left: 160px;
-  transform: translate(0, -50%);
+  left: 38px;
+  top: 24px;
 }
 #hero h1 {
   margin: 0;
-  font-size: 64px;
+  font-size: 2.5em;
   font-weight: 700;
-  line-height: 56px;
+  line-height: 100%;
   color: var(--neutral2);
 }
 #hero p {
   color: var(--neutral2);
-  margin: 15px 0 0 0;
-  font-size: 26px;
+  margin: 0.5em 0 0 0;
+  font-size: 1em;
   font-family: "Poppins", sans-serif;
 }
 #hero .social-links {
-  margin-top: 30px;
+  margin-top: 1em;
 }
 #hero .social-links a {
-  font-size: 24px;
+  font-size: 1.2em;
   display: inline-block;
   color: var(--neutral2);
-  line-height: 1;
-  margin-right: 20px;
+  line-height: 100%;
+  margin-right: 0.75em;
   transition: 0.3s;
 }
 #hero .social-links .social-link.not-hovered {
@@ -148,15 +147,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--neutral1);
   opacity: 1;
 }
-@media (max-width: 100em) {
-  #hero {
-    padding: 0;
-  }
-  #hero .container {
-    left: 38px;
-    top: 24px;
-    transform: none;
-  }
+@media (max-width: 10000em) {
   #hero-img {
     max-width: 80vmin;
     max-height: 80vmin;
@@ -164,22 +155,26 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
     transform: translate(30%, 0%) scale(-1, 1);
   }
-  #hero h1 {
-    font-size: 2em;
-    line-height: 36px;
-  }
-  #hero p {
-    margin-top: 10px;
-    font-size: 1em;
-    line-height: 24px;
-  }
-  #hero .social-links {
-    margin-top: 1em;
-  }
-  #hero .social-links a {
-    font-size: 1.1em;
-    margin-right: 0.5em;
-  }
+}
+#hero #scene-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100vmin;
+  height: 100vmin;
+  z-index: 2;
+  pointer-events: none;
+}
+#background-image {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background: url("assets/Vector.svg") center center no-repeat;
+  background-size: contain;
+  transform: translate(20em, 15em) rotate(20deg) scale(2);
+  z-index: 1;
+  pointer-events: none;
 }
 
 /*--------------------------------------------------------------

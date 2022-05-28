@@ -68,3 +68,10 @@
     });
   }
 })()
+
+$('.social-links').ready(function(){
+    $('a').hover(function(){
+        $(this).toggleClass('hovered');
+        $(this).siblings().toggleClass('not-hovered');
+    });
+});

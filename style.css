@@ -15,12 +15,33 @@
   --neutral2: #F0F2F4;
   --neutral1: #ffffff;
 }
+@font-face {
+  font-family: 'Spacegrotesk';
+  src: url('https://assets.website-files.com/622fbc5a718ac3417fcd3d75/622fc8f87fd5f314f8fc8126_SpaceGrotesk-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Spacegrotesk';
+  src: url('https://assets.website-files.com/622fbc5a718ac3417fcd3d75/622fc8f89ce5a8375d74de96_SpaceGrotesk-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Spacegrotesk';
+  src: url('https://assets.website-files.com/622fbc5a718ac3417fcd3d75/622fc8f87653c0225d638848_SpaceGrotesk-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: Spacegrotesk, sans-serif;
   margin: 0;
 }
 a {
@@ -41,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .heading-top-line {
   position: absolute;
-  margin-left:-32px;
+  margin-left:-24px;
   width: 100%;
   max-width: 118px;
   min-height: 5px;
@@ -54,15 +75,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 48px;
 }
 .heading-vert-line {
-  margin-left:-32px;
+  margin-left:-24px;
   position: absolute;
   height: 100%;
-  max-height: 48px;
+  max-height: 32px;
   min-width: 8px;
   background-color: var(--neutral1);
 }
 .heading-line-spacing {
-  height: 32px;
+  height: 24px;
 }
 
 /*--------------------------------------------------------------
@@ -72,25 +93,26 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100vh;
   background-color: var(--neutral75);
-  background-size: cover;
   position: relative;
   overflow: hidden;
 }
 #hero-img {
-  width: 100%;
-  height: 100%;
-  background: url("assets/EngineerCaptureEeveeT.png") top right no-repeat;
+  width: 100vmin;
+  height: 100vmin;
+  max-width: 60em;
+  max-height: 60em;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 0;
+  background: url("assets/EngineerCaptureEeveeT.png") center center no-repeat;
+  background-size: contain;
+  background-origin: content-box;
   position: absolute;
-}
-@media (min-width: 992px) {
-  #hero {
-    padding-left: 160px;
-  }
 }
 #hero .container {
-  padding: 30px;
   position: absolute;
   top: 50%;
+  left: 160px;
   transform: translate(0, -50%);
 }
 #hero h1 {
@@ -117,22 +139,46 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 20px;
   transition: 0.3s;
 }
-#hero .social-links a:hover {
-  transform: translate3d(0px, 0px, 0px) scale(1.15);
-  color: var(--neutral1);
+#hero .social-links .social-link.not-hovered {
+  transform: translate3d(0px, 1px, 0px);
+  opacity: 0.5;
 }
-@media (max-width: 992px) {
+#hero .social-links .social-link.hovered {
+  transform: translate3d(0px, -1px, 0px) scale(1.15);
+  color: var(--neutral1);
+  opacity: 1;
+}
+@media (max-width: 100em) {
   #hero {
-    text-align: center;
+    padding: 0;
+  }
+  #hero .container {
+    left: 38px;
+    top: 24px;
+    transform: none;
+  }
+  #hero-img {
+    max-width: 80vmin;
+    max-height: 80vmin;
+    top: auto;
+    bottom: 0;
+    transform: translate(30%, 0%) scale(-1, 1);
   }
   #hero h1 {
-    font-size: 32px;
+    font-size: 2em;
     line-height: 36px;
   }
   #hero p {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 1em;
     line-height: 24px;
+  }
+  #hero .social-links {
+    margin-top: 1em;
+  }
+  #hero .social-links a {
+    font-size: 1.1em;
+    margin-right: 0.5em;
   }
 }
 

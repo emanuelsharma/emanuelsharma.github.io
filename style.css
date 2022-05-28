@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero-img {
   width: 100%;
   height: 100%;
-  background: url("assets/EngineerCaptureEeveeT.PNG") top right no-repeat;
+  background: url("assets/EngineerCaptureEeveeT.png") top right no-repeat;
   position: absolute;
   /*transform: translateZ(-10px);
   object-fit: cover;
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 #about {
   width: 100%;
   height: 100vh;
-  background-color: #D3DDF5;
+  background-color: #24252b;
   background-size: cover;
   position: relative;
 }

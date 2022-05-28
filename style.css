@@ -5,8 +5,15 @@
 }
 
 :root {
-  --primaryHover: #ffffff;
-  --primary: #dddddd;
+  --neutral8: #1B1F24;
+  --neutral75: #23242A;
+  --neutral7: #393b45;
+  --neutral6: #5D6C83;
+  --neutral5: #8895AA;
+  --neutral4: #C3CAD5;
+  --neutral3: #E4E7EC;
+  --neutral2: #F0F2F4;
+  --neutral1: #ffffff;
 }
 
 /*--------------------------------------------------------------
@@ -14,15 +21,14 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
-  color: var(--primary);
   margin: 0;
 }
 a {
-  color: var(--primary);
+  color: var(--neutral2);
   text-decoration: none;
 }
 a:hover {
-  color: var(--primaryHover);
+  color: var(--neutral1);
   text-decoration: none;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -32,10 +38,31 @@ h1, h2, h3, h4, h5, h6 {
 {
   width: 100%;
   height: 100%;
-  /*
-  overflow-y: auto;
-  overflow-x: hidden;
-  perspective: 10px;*/
+}
+.heading-top-line {
+  position: absolute;
+  margin-left:-32px;
+  width: 100%;
+  max-width: 118px;
+  min-height: 5px;
+  margin-bottom: 24px;
+  background-color: var(--neutral1);
+}
+.heading-top-line.large {
+  max-width: 148px;
+  min-height: 8px;
+  margin-bottom: 48px;
+}
+.heading-vert-line {
+  margin-left:-32px;
+  position: absolute;
+  height: 100%;
+  max-height: 48px;
+  min-width: 8px;
+  background-color: var(--neutral1);
+}
+.heading-line-spacing {
+  height: 32px;
 }
 
 /*--------------------------------------------------------------
@@ -44,21 +71,16 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background-color: #393B45;
+  background-color: var(--neutral75);
   background-size: cover;
   position: relative;
   overflow: hidden;
-  /*transform-style: preserve-3d;
-  z-index: 1;*/
 }
 #hero-img {
   width: 100%;
   height: 100%;
   background: url("assets/EngineerCaptureEeveeT.png") top right no-repeat;
   position: absolute;
-  /*transform: translateZ(-10px);
-  object-fit: cover;
-  z-index: 1000;*/
 }
 @media (min-width: 992px) {
   #hero {
@@ -69,18 +91,17 @@ h1, h2, h3, h4, h5, h6 {
   padding: 30px;
   position: absolute;
   top: 50%;
-  transform: translate(0, -50%);/* translateZ(-10px) scale(1.5);
-  z-index: 2000;*/
+  transform: translate(0, -50%);
 }
 #hero h1 {
   margin: 0;
   font-size: 64px;
   font-weight: 700;
   line-height: 56px;
-  color: var(--primary);
+  color: var(--neutral2);
 }
 #hero p {
-  color: var(--primary);
+  color: var(--neutral2);
   margin: 15px 0 0 0;
   font-size: 26px;
   font-family: "Poppins", sans-serif;
@@ -91,13 +112,14 @@ h1, h2, h3, h4, h5, h6 {
 #hero .social-links a {
   font-size: 24px;
   display: inline-block;
-  color: var(--primary);
+  color: var(--neutral2);
   line-height: 1;
   margin-right: 20px;
   transition: 0.3s;
 }
 #hero .social-links a:hover {
-  color: var(--primaryHover);
+  transform: translate3d(0px, 0px, 0px) scale(1.15);
+  color: var(--neutral1);
 }
 @media (max-width: 992px) {
   #hero {
@@ -120,7 +142,7 @@ h1, h2, h3, h4, h5, h6 {
 #about {
   width: 100%;
   height: 100vh;
-  background-color: #24252b;
+  background-color: var(--neutral7);
   background-size: cover;
   position: relative;
 }

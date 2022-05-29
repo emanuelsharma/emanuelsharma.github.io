@@ -95,7 +95,6 @@ const customOutline = new CustomOutlinePass(
   camera
 );
 customOutline.fsQuad.material.uniforms.outlineColor.value.set(0x000000);
-customOutline.fsQuad.material.uniforms.multiplierParameters.value.r = 100;
 customOutline.fsQuad.material.uniforms.multiplierParameters.value.w = 0;
 customOutline.fsQuad.material.uniforms.width.value = 3;
 composer.addPass(customOutline);

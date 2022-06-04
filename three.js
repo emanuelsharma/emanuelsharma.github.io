@@ -1,43 +1,152 @@
 import {
   BoxBufferGeometry,
   Color,
+  Clock,
   Vector2,
+  Vector3,
   Mesh,
   DirectionalLight,
   AmbientLight,
   DepthTexture,
   WebGLRenderTarget,
   MeshStandardMaterial,
+  SkeletonHelper,
+  Skeleton,
   MeshToonMaterial,
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from 'https://unpkg.com/three@0.126.1/build/three.module.js';
-import { EffectComposer } from "https://unpkg.com/three@0.126.1/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "https://unpkg.com/three@0.126.1/examples/jsm/postprocessing/RenderPass.js";
-import { ShaderPass } from "https://unpkg.com/three@0.126.1/examples/jsm/postprocessing/ShaderPass.js";
-import { FXAAShader } from "https://unpkg.com/three@0.126.1/examples/jsm/shaders/FXAAShader.js";
-import { GLTFLoader } from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js';
+  AnimationMixer,
+  SphereGeometry,
+  MeshBasicMaterial,
+} from 'https://unpkg.com/three@0.141.0/build/three.module.js';
+import { CCDIKHelper, CCDIKSolver } from "https://unpkg.com/three@0.141.0/examples/jsm/animation/CCDIKSolver.js";
+import { EffectComposer } from "https://unpkg.com/three@0.141.0/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://unpkg.com/three@0.141.0/examples/jsm/postprocessing/RenderPass.js";
+import { ShaderPass } from "https://unpkg.com/three@0.141.0/examples/jsm/postprocessing/ShaderPass.js";
+import { FXAAShader } from "https://unpkg.com/three@0.141.0/examples/jsm/shaders/FXAAShader.js";
+import { GLTFLoader } from 'https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js';
+import { DragControls } from 'https://unpkg.com/three@0.141.0/examples/jsm/controls/DragControls';
+import { TransformControls } from 'https://unpkg.com/three@0.141.0/examples/jsm/controls/TransformControls';
 import { CustomOutlinePass } from "/customOutlinePass.js";
 
-const loader = new GLTFLoader();
-const [engineerData] = await Promise.all([
-  loader.loadAsync('/assets/Engineer.glb')
-]);
-let engineer = engineerData.scene.children[0];
-engineerData.scene.children[0].traverse((node) => {
-  let newMat = new MeshToonMaterial({map: node.material.map});
-  node.material = newMat
-});
+let activeAction
+const setAction = (toAction) => {
+  console.log(toAction)
+  if (toAction != activeAction) {
+    if (activeAction != null){
+      activeAction.stop()
+      activeAction.fadeOut(1)}
+      activeAction = toAction
+      activeAction.reset()
+      activeAction.fadeIn(1)
+      activeAction.play()
+  }
+}
 
-// Get a reference to the container element that will hold our scene
-const container = document.querySelector('#scene-container');
+let mixer = null;
+const animationActions = []
+let modelReady = false;
 
 // create a Scene
 const scene = new Scene();
 
-engineer.position.set(0, -2, -10);
-scene.add(engineer);
+const loader = new GLTFLoader();
+let engineer;
+let ikSolver;
+let target;
+let body;
+let bodyOrigin;
+let rot1, rot2
+loader.load('/assets/Engineer.glb',
+  (gltf) => {
+    mixer = new AnimationMixer(gltf.scene)
+
+    //console.log(gltf)
+    const animationAction = mixer.clipAction(gltf.animations[0])
+    console.log(gltf.animations)
+    animationActions.push(animationAction)
+
+    console.log(gltf);
+    engineer = gltf.scene.children[0];
+    let newMat = new MeshToonMaterial({map: engineer.children[6].material.map});
+    newMat.skinning = true;
+    newMat.morphTargets = true;
+    engineer.children[6].material = newMat
+    engineer.scale.set(1.5,1.5,1.5);
+    engineer.rotation.set(0, 3, 0);
+    engineer.position.set(0, 2, -5);
+    scene.add(engineer);
+    console.log(engineer)
+
+    console.log(engineer.children[6].skeleton.bones);
+    target = engineer.children[6].skeleton.bones[16]
+    body = engineer.children[6].skeleton.bones[0]
+    bodyOrigin = body.position
+    const iks = [
+      {
+        target: 16,
+        effector: 3,
+        links: [ { index: 2 }, { index: 1 } ]
+      },
+      {
+        target: 17,
+        effector: 6,
+        links: [ { index: 5 }, { index: 4 } ]
+      },/*
+      {
+        target: 18,
+        effector: 9,
+        links: [ { index: 8 }, { index: 7 } ]
+      },*/
+      {
+        target: 19,
+        effector: 12,
+        links: [ { index: 11 }, { index: 10 } ]
+      },/*
+      {
+        target: 20,
+        effector: 15,
+        links: [ { index: 14 }, { index: 13 } ]
+      }*/
+    ];
+    let pos = new Vector3
+    engineer.children[6].skeleton.bones[6].getWorldPosition(pos)
+    pos = engineer.children[6].skeleton.bones[17].parent.worldToLocal(pos)
+    engineer.children[6].skeleton.bones[17].position.set(pos.x,pos.y,pos.z)
+
+    engineer.children[6].skeleton.bones[9].getWorldPosition(pos)
+    pos = engineer.children[6].skeleton.bones[18].parent.worldToLocal(pos)
+    engineer.children[6].skeleton.bones[18].position.set(pos.x,pos.y,pos.z)
+
+    engineer.children[6].skeleton.bones[12].getWorldPosition(pos)
+    pos = engineer.children[6].skeleton.bones[19].parent.worldToLocal(pos)
+    engineer.children[6].skeleton.bones[19].position.set(pos.x,pos.y,pos.z)
+
+    engineer.children[6].skeleton.bones[15].getWorldPosition(pos)
+    pos = engineer.children[6].skeleton.bones[20].parent.worldToLocal(pos)
+    engineer.children[6].skeleton.bones[20].position.set(pos.x,pos.y,pos.z)
+
+    rot1 = engineer.children[6].skeleton.bones[6].rotation
+    rot2 = engineer.children[6].skeleton.bones[12].rotation
+
+    ikSolver = new CCDIKSolver( engineer.children[6], iks );
+    console.log(ikSolver)
+    //scene.add(new CCDIKHelper(engineer.children[6], iks))
+
+    modelReady = true
+    //setAction(animationActions[0]);
+  },
+  (xhr) => {
+      console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+  },
+  (error) => {
+      console.log(error)
+  }
+)
+
+// Get a reference to the container element that will hold our scene
+const container = document.querySelector('#scene-container');
 
 // Set the background color
 scene.background = null;
@@ -52,24 +161,12 @@ const camera = new PerspectiveCamera(fov, aspect, near, far);
 
 // every object is initially created at ( 0, 0, 0 )
 // move the camera back so we can view the scene
-camera.position.set(0, 0, 10);
+camera.position.set(0, 0, 20);
 
-// create a geometry
-const geometry = new BoxBufferGeometry(2, 2, 2);
-
-// create a default (white) Basic material
-const material = new MeshStandardMaterial();
-
-// create a Mesh containing the geometry and material
-const cube = new Mesh(geometry, material);
-
-// add the mesh to the scene
-//scene.add(cube);
-
-const light = new DirectionalLight('white', 2);
+const light = new DirectionalLight('white', 1.5);
 light.position.set(10, 10, 10);
 scene.add(light);
-const light2 = new AmbientLight('white', 0.5);
+const light2 = new AmbientLight('white', 1);
 scene.add(light2);
 
 const depthTexture = new DepthTexture();
@@ -113,15 +210,55 @@ renderer.setPixelRatio(window.devicePixelRatio);
 
 renderer.setClearColor(0x000000, 0);
 
+/*
+const geometry = new SphereGeometry(0.5, 5, 5); // (radius, widthSegments, heightSegments)
+const material = new MeshBasicMaterial( {color: 0xffff00} );
+const sphere = new Mesh(geometry, material);
+scene.add(sphere);
+sphere.position.set(0,0,0)
+const controls = new DragControls( [sphere], camera, renderer.domElement );
+
+// add event listener to highlight dragged objects
+controls.addEventListener('dragstart', function (event) {
+  event.object.material.color = 0xff0000
+})
+controls.addEventListener('dragend', function (event) {
+  event.object.material.color = 0xffff00
+})
+
+window.addEventListener('mousemove', event => {
+  sphere.position.x = (event.clientX / window.innerWidth) * 2 - 1;
+  sphere.position.y = -(event.clientY / window.innerHeight) * 2 + 1;
+})*/
+/*
+let tc = new TransformControls(camera, renderer.domElement)
+tc.attach(sphere)
+scene.add(tc);
+console.log(tc)*/
+
 // add the automatically created <canvas> element to the page
 container.append(renderer.domElement);
 
+const clock = new Clock()
 function animate() {
   requestAnimationFrame( animate );
 
-  engineer.rotation.z += 0.01;
+  if (modelReady) 
+  {
+    //engineer.rotation.set(0,clock.elapsedTime * 0.2, 0);
+    //target.position.x = Math.sin(clock.elapsedTime * 2) * 5;
+    target.position.y = 20;
+    target.position.z = 0;
+    //body.position.x = bodyOrigin.x + Math.sin(clock.elapsedTime*4) * 0.01;
+    //body.position.y = bodyOrigin.y + Math.cos(clock.elapsedTime*4) * 0.005;
+    mixer.update(clock.getDelta())
+    ikSolver.update();
+    
+    //engineer.children[6].skeleton.bones[6].rotation.set(rot1)
+    //engineer.children[6].skeleton.bones[12].rotation.set(rot2)
+  }
 
-  composer.render( scene, camera );
+  composer.render( scene, camera )
 };
 
 animate();

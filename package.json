@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/emanuelsharma/emanuelsharma.github.io#readme",
   "dependencies": {
-    "three": "^0.141.0"
+    "three": "^0.141.0",
+    "three-ik": "^0.1.0"
   },
   "devDependencies": {
     "lite-server": "^2.6.1"

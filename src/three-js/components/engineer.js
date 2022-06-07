@@ -6,6 +6,8 @@ class Engineer {
   constructor(engineerRoot) {
     this.gameObject = engineerRoot
     this.engineerMesh = engineerRoot.children[6]
+    console.log(this.gameObject)
+    this.engineerShadow = engineerRoot.children[7]
 
     const gradientMap = new TextureLoader().load( '/assets/models/lightingRamp.png' );
     gradientMap.minFilter = NearestFilter
@@ -36,6 +38,7 @@ async function loadEngineer() {
     loader.load('/assets/models/Engineer.glb',
       (gltf) => {
         const engineer = gltf.scene.children[0]
+        console.log(gltf)
         resolve(new Engineer(engineer))
       },
       (xhr) => {

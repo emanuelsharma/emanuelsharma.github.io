@@ -11,14 +11,14 @@ class Loop {
   }
 
   start() {
-    this.composer.renderer.setAnimationLoop(() => {
+    this.composer.setAnimationLoop(() => {
       this.tick()
       this.composer.render(this.scene, this.camera)
     })
   }
 
   stop() {
-    this.composer.renderer.setAnimationLoop(null)
+    this.composer.setAnimationLoop(null)
   }
 
   tick() {

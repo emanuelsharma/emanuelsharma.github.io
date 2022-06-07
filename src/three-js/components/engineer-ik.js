@@ -70,7 +70,7 @@ export class EngineerIK {
         this.body.lookAt(this.worldPos)
         let opposite = new Vector3(-this.worldPos.x, this.worldPos.y, this.worldPos.z)
         this.mesh.skeleton.bones[this.neckIk.effector].lookAt(opposite)
-        console.log(this.worldPos)
+        //console.log(this.worldPos)
         this.rotate(this.rightArmIk, -0.015*this.worldPos.x, -0.2+Math.min(0,-0.025*this.worldPos.x))
         this.rotate(this.leftArmIk, 0.015*this.worldPos.x, 0.2+Math.max(0,-0.025*this.worldPos.x))
       //}

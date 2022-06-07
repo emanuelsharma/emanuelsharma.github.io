@@ -11,7 +11,7 @@ import { Resizer } from './systems/resizer.js';
 import { Loop } from './systems/loop.js';
 
 import { Vector2, Vector3, SphereGeometry,MeshBasicMaterial, Mesh } from "three";
-import { DepthTexture } from "three/src/textures/DepthTexture.js";
+//import { DepthTexture } from "three/src/textures/DepthTexture.js";
 import { WebGLRenderTarget } from "three/src/renderers/WebGLRenderTarget.js";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
@@ -34,7 +34,7 @@ class World {
     let resizer = new Resizer(container, camera, renderer)
     const { ambientLight, mainLight } = createLights()
 
-    const depthTexture = new DepthTexture();
+    /*const depthTexture = new DepthTexture();
     const renderTarget = new WebGLRenderTarget(
       window.innerWidth,
       window.innerHeight,
@@ -60,9 +60,9 @@ class World {
       1 / window.innerWidth,
       1 / window.innerHeight
     );
-    //this.composer.addPass(effectFXAA);
+    //this.composer.addPass(effectFXAA);*/
     
-    loop = new Loop(camera, scene, this.composer)
+    loop = new Loop(camera, scene, renderer)
     loop.updatables.push(controls)
     scene.add(ambientLight, mainLight)
     container.append(renderer.domElement)

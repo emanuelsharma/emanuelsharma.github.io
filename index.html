@@ -16,13 +16,22 @@
   <link href="vendors/boxicons/css/boxicons.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="style.css" rel="stylesheet">
+  <link href="styles/style.css" rel="stylesheet">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="importmap">
 		{
 				"imports": {
-						"three": "https://unpkg.com/three@0.141.0/build/three.module.js"
+					"three": "https://unpkg.com/three@0.141.0/build/three.module.js",
+					"three/examples/jsm/loaders/GLTFLoader.js": "https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js",
+					"three/examples/jsm/controls/OrbitControls.js": "https://unpkg.com/three@0.141.0/examples/jsm/controls/OrbitControls.js",
+					"three/src/textures/DepthTexture.js": "https://unpkg.com/three@0.141.0/src/textures/DepthTexture.js",
+					"three/src/renderers/WebGLRenderTarget.js": "https://unpkg.com/three@0.141.0/src/renderers/WebGLRenderTarget.js",
+					"three/examples/jsm/animation/CCDIKSolver.js": "https://unpkg.com/three@0.141.0/examples/jsm/animation/CCDIKSolver.js",
+					"three/examples/jsm/postprocessing/RenderPass.js": "https://unpkg.com/three@0.141.0/examples/jsm/postprocessing/RenderPass.js",
+					"three/examples/jsm/postprocessing/ShaderPass.js": "https://unpkg.com/three@0.141.0/examples/jsm/postprocessing/ShaderPass.js",
+					"three/examples/jsm/shaders/FXAAShader.js": "https://unpkg.com/three@0.141.0/examples/jsm/shaders/FXAAShader.js",
+					"three/examples/jsm/postprocessing/EffectComposer.js": "https://unpkg.com/three@0.141.0/examples/jsm/postprocessing/EffectComposer.js"
 				}
 		}
 	</script>
@@ -34,7 +43,7 @@
 	  <!-- ======= Hero Section ======= -->
 	  <section id="hero">
 			<div id="background-image">
-				<img src="assets/BackgroundAccent.svg"/>
+				<img src="assets/graphics/BackgroundAccent.svg"/>
 				<div></div>
 			</div>
 			<div id="scene-container">
@@ -63,8 +72,7 @@
 	  <script src="vendors/typed.js/typed.min.js"></script>
 
 	  <!-- Template Main JS File -->
-	  <script src="main.js"></script>
-	  <script type="module" src="three.js"></script>
+	  <script type="module" src="src/main.js"></script>
 
 	</div><!-- End Wrapper -->
 </body>

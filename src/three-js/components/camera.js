@@ -1,10 +1,13 @@
-import { PerspectiveCamera } from 'three';
+import { PerspectiveCamera } from "three"
 
-function createCamera() {
-  const camera = new PerspectiveCamera(35, 1, 0.1, 100);
-  camera.position.set(-1.5, 1.5, 6.5);
-
-  return camera;
+function createCamera(container) {
+  const fov = 35
+  const aspect = container.clientWidth / container.clientHeight
+  const near = 0.1
+  const far = 100
+  const camera = new PerspectiveCamera(fov, aspect, near, far)
+  camera.position.set(0, 7.5, -25)
+  return camera
 }
 
-export { createCamera };
+export { createCamera }

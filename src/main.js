@@ -1,4 +1,6 @@
-(function() {
+import World from "/src/three-js/world.js"
+
+async function main() {
   "use strict";
 
   /**
@@ -67,11 +69,23 @@
       backDelay: 2000
     });
   }
-})()
+  
+  const container = document.querySelector('#scene-container')
+  if (container)
+  {
+    const world = new World(container)
+    await world.init()
+    world.start()
+  }
+}
+
+main().catch((err) => {
+  console.error(err);
+});
 
 $('.social-links').ready(function(){
     $('a').hover(function(){
-        $(this).toggleClass('hovered');
-        $(this).siblings().toggleClass('not-hovered');
+        $(this).toggleClass('hovered')
+        $(this).siblings().toggleClass('not-hovered')
     });
 });

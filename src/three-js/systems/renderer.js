@@ -1,11 +1,16 @@
-import { WebGLRenderer } from 'three';
+import { WebGLRenderer } from 'three'
 
 function createRenderer() {
-  const renderer = new WebGLRenderer({ antialias: true });
+  const renderer = new WebGLRenderer( { 
+    antialias: true, 
+    alpha: true, 
+    logarithmicDepthBuffer: true,
+    physicallyCorrectLights: true
+  });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setClearColor(0x000000, 0);
 
-  renderer.physicallyCorrectLights = true;
-
-  return renderer;
+  return renderer
 }
 
-export { createRenderer };
+export { createRenderer }

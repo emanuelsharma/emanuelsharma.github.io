@@ -47,10 +47,6 @@ export class EngineerIK {
     }
     this.ikSolver = new CCDIKSolver( engineerMesh, this.ikConfig )
     this.ikHelper = new CCDIKHelper( engineerMesh, this.ikConfig )
-    const geometry = new SphereGeometry( 0.1, 32, 16 )
-    const material = new MeshBasicMaterial( { color: 0xffffff } )
-    const sphere = new Mesh( geometry, material )
-    this.mesh.skeleton.bones[this.neckIk.target].add( sphere )
     this.offset = new Vector3()
     this.worldPos = new Vector3(0,5,-20)
     this.targetWorldPos = new Vector3(0,5,-20)
@@ -59,8 +55,8 @@ export class EngineerIK {
   }
 
   tick(clock) {
-    this.worldPos.lerp(this.targetWorldPos, 0.035)
     if (this.worldPos != null) {
+      this.worldPos.lerp(this.targetWorldPos, 0.035)
       //if (this.worldPos.distanceTo(this.targetWorldPos) > 0.05) {
         let target = this.mesh.skeleton.bones[this.neckIk.target]
         let parent = target.parent
@@ -118,11 +114,15 @@ export class EngineerIK {
   }
 
   onMouseMove(mv, camera) {
-    let sphere = new Sphere(new Vector3(0,0,0), 20)
+    let sphere = new Sphere(new Vector3(0,0,0), 18)
     var raycaster = new Raycaster()
     raycaster.setFromCamera( mv, camera )
     if (raycaster.ray) {
-      this.targetWorldPos = raycaster.ray.intersectSphere(sphere, this.targetWorldPos)
+      let targetPos = new Vector3()
+      targetPos = raycaster.ray.intersectSphere(sphere, targetPos)
+      if (targetPos) {
+        this.targetWorldPos = targetPos
+      }
     }
   }
 

@@ -13,6 +13,7 @@ function createControls(camera, canvas) {
 
   // forward controls.update to our custom .tick method
   controls.tick = () => controls.update()
+  controls.enabled = false;
 
   return controls
 }

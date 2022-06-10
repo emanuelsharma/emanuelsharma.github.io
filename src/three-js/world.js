@@ -2,6 +2,7 @@ import { createCamera } from './components/camera.js';
 import { createLights } from './components/lights.js';
 import { createScene } from './components/scene.js';
 import { loadEngineer } from './components/engineer.js';
+import { createBlobShadow } from './components/blob-shadow.js';
 
 import { CustomOutlinePass } from './shaders/customOutlinePass.js';
 
@@ -71,6 +72,7 @@ class World {
 
   async init() {
     engineer = await loadEngineer()
+    let blobShadow = createBlobShadow(engineer.gameObject)
     controls.target.set(engineer.gameObject.position.x, engineer.gameObject.position.y + 5, engineer.gameObject.position.z)
     engineer.gameObject.rotation.set(0,3,0)
     scene.add(engineer.gameObject)

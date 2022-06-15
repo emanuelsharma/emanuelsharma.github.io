@@ -43,6 +43,7 @@
 body {
   font-family: Spacegrotesk, sans-serif;
   margin: 0;
+  background-color: #aaaeb9;
 }
 a {
   color: var(--neutral2);
@@ -55,11 +56,13 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
 }
-.wrapper
+/*.wrapper
 {
-  width: 100%;
-  height: 100%;
-}
+  margin: 2.5em;
+  border-radius: 0.5em;
+  background: var(--neutral8);
+  overflow: hidden;
+}*/
 .heading-top-line {
   position: absolute;
   margin-left:-24px;
@@ -111,17 +114,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 #hero .container {
   position: absolute;
-  left: 38px;
-  top: 24px;
+  margin-left: 38px;
+  margin-top: 24px;
 }
-#hero h1 {
+h1 {
   margin: 0;
   font-size: 2.5em;
   font-weight: 700;
   line-height: 100%;
   color: var(--neutral2);
 }
-#hero p {
+p {
   color: var(--neutral2);
   margin: 0.5em 0 0 0;
   font-size: 1em;
@@ -162,18 +165,16 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   position: absolute;
+  display: flex;
+  flex-direction: row;
   z-index: 0;
 }
 #background-image img {
-  position: absolute;
-  left: 0;
   width: 100vh;
   height: 100%;
   object-fit: fill;
 }
 #background-image div {
-  position: absolute;
-  right: 0;
   width: calc(100vw - 100vh);
   height: 100%;
   background-color: var(--neutral7);
@@ -214,8 +215,153 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #about {
   width: 100%;
-  height: 100vh;
   background-color: var(--neutral7);
   background-size: cover;
+  position: relative;
+  overflow: auto;
+}
+#about .container {
+  margin-top: 5em;
+  margin-bottom: 5em;
+  margin-left: 3em;
+  margin-right: 3em;
+  height: 50em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+#about .container h1 {
+  font-size: 4em;
+}
+#about .container p {
+  font-size: 1.5em;
+}
+#about .container .card-container {
+  height: 40em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-basis: 60%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+#about .container .card-container-fade {
+  position: absolute;
+  width: calc(60% + 2px);
+  height: 40em;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to left, rgba(57,59,69,0) 0 95%, var(--neutral7) 100%),
+    linear-gradient(to right, rgba(57,59,69,0) 0 95%, var(--neutral7) 100%);
+}
+#about .container .body {
+  flex-basis: 40%;
+}
+#job-experience .body {
+  text-align: right;
+}
+.card-container .card {
+  height: 90%;
+  flex: 0 0 20em;
+  /*background-image: var(--neutral8);*/
+  background: url("/assets/graphics/HexagonsBackground.png") center center no-repeat;
+  background-size: cover;
+  display: relative;
+  margin-right: 1em;
+  border-radius: 1em;
+  box-shadow:
+    rgba(black, 0.66) 0 30px 60px 0,
+    inset #333 0 0 0 5px,
+    inset rgba(white, 0.5) 0 0 0 6px;
+  /*transition: 1s;*/
+  position: relative;
+  transform: perspective(200px);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.card-inside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  margin: 0.5em;
+  width: calc(100% - 1em);
+  height: calc(100% - 1em);
+  border: solid;
+  border-color: var(--neutral7);
+  border-radius: 1em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition:
+    1s,
+    opacity 5s 1s;
+  pointer-events: none;
+}
+.card-overlay {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  background: url("/assets/graphics/EngineerCaptureEevee.png") bottom left no-repeat;
+  background-size: 115%;
+  z-index: 3;
+  -webkit-transform:translateZ(20px);
+  transform:translateZ(20px);
+}
+.card .body {
+  position: absolute;
+  margin: 0.5em;
+  padding: 0 2em 0 2em;
+  z-index: 3;
+  -webkit-transform:translateZ(20px);
+  transform:translateZ(20px);
+  text-align: left !important;
+  width: calc(100% - 1em);
+  overflow-wrap: break-word;
+  white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+  white-space: pre-wrap;      /* current browsers */
+}
+.card .body h1 {
+  height: 0;
+  font-size: 2.5em !important;
+  color: var(--neutral4)
+}
+.card .body p {
+  height: 0;
+  font-size: 1em !important;
+}
+.card-container .card:last-child {
+  margin-right: 0;
+}
+
+/*--------------------------------------------------------------
+# Experience Section
+--------------------------------------------------------------*/
+#experience {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--neutral75);
+  position: relative;
+  overflow: hidden;
+}
+.flipped {
+  -webkit-transform: scaleX(-1) scaleY(-1);
+  transform: scaleX(-1) scaleY(-1);
+}
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+#contact {
+  width: 100%;
+  height: 0;
+  background-color: var(--neutral75);
   position: relative;
 }

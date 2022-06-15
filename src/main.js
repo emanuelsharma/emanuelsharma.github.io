@@ -16,45 +16,6 @@ async function main() {
   }
 
   /**
-   * Easy event listener function
-   */
-  const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
-    }
-  }
-
-  /**
-   * Easy on scroll event listener 
-   */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
-  }
-
-  /**
-   * Scrolls to an element with header offset
-   */
-  const scrollto = (el) => {
-    let header = select('#header')
-    let offset = header.offsetHeight
-
-    if (!header.classList.contains('header-scrolled')) {
-      offset -= 16
-    }
-
-    let elementPos = select(el).offsetTop
-    window.scrollTo({
-      top: elementPos - offset,
-      behavior: 'smooth'
-    })
-  }
-
-  /**
    * Hero type effect
    */
   const typed = select('.typed')
@@ -87,5 +48,50 @@ $('.social-links').ready(function(){
     $('a').hover(function(){
         $(this).toggleClass('hovered')
         $(this).siblings().toggleClass('not-hovered')
-    });
+    })
+})
+$('.card-container').bind('mousewheel DOMMouseScroll', function(event) {
+  event.preventDefault()
+  $(this).scrollLeft($(this).scrollLeft() + event.originalEvent.deltaY)
+})
+
+let constrain = 100;
+let ex1Layer = document.getElementsByClassName("card");
+let time = 0;
+
+function transforms(x, y, el) {
+  let box = el.getBoundingClientRect();
+  let calcX = -(y - box.y - (box.height / 2)) / constrain;
+  let calcY = (x - box.x - (box.width / 2)) / constrain;
+  
+  return "perspective(100px) "
+    + "   rotateX("+ calcX +"deg) "
+    + "   rotateY("+ calcY +"deg) ";
+};
+
+ function transformElement(el, xyEl) {
+  el.style.transform  = transforms.apply(null, xyEl);
+  el.style.transition = "0s";
+}
+
+$('.card').bind('mousemove', function(e) {
+  const d = new Date()
+  let seconds = d.getSeconds()
+  if (seconds < time + 1) {
+    console.log("returned")
+    return
+  }
+  let xy = [e.clientX, e.clientY];
+  let el = $(this).get(0)
+  let position = xy.concat([el]);
+  transformElement( el, position);
+});
+$('.card').bind('mouseout', function(e) {
+  const d = new Date()
+  time = d.getSeconds()
+  let el = $(this).get(0)
+  el.style.transition = "1s";
+  el.style.transform = "perspective(200px) "
+  + "   rotateX(0deg) "
+  + "   rotateY(0deg) ";
 });

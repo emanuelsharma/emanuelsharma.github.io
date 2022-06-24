@@ -50,6 +50,8 @@ $('.social-links').ready(function(){
         $(this).siblings().toggleClass('not-hovered')
     })
 })
+
+/*
 $('.card-container').bind('mousewheel DOMMouseScroll', function(event) {
   event.preventDefault()
   $(this).scrollLeft($(this).scrollLeft() + event.originalEvent.deltaY)
@@ -73,7 +75,7 @@ function transforms(x, y, el) {
   el.style.transform  = transforms.apply(null, xyEl);
   el.style.transition = "0s";
 }
-
+let timeOfOut = []
 $('.card').bind('mousemove', function(e) {
   const d = new Date()
   let seconds = d.getSeconds()
@@ -95,3 +97,15 @@ $('.card').bind('mouseout', function(e) {
   + "   rotateX(0deg) "
   + "   rotateY(0deg) ";
 });
+$('.card').bind('mousein', function(e) {
+  const d = new Date()
+  let seconds = d.getSeconds()
+  if (seconds > time + 1) {
+    console.log("returned")
+    return
+  }
+  let xy = [e.clientX, e.clientY];
+  let el = $(this).get(0)
+  let position = xy.concat([el]);
+  transformElement( el, position);
+});*/

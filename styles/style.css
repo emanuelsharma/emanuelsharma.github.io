@@ -45,6 +45,18 @@ body {
   margin: 0;
   background-color: #aaaeb9;
 }
+.right {
+  text-align: left;
+}
+.top {
+  text-align: top;
+}
+.left {
+  text-align: right;
+}
+.bottom {
+  text-align: bottom;
+}
 a {
   color: var(--neutral2);
   text-decoration: none;
@@ -237,108 +249,22 @@ p {
 #about .container p {
   font-size: 1.5em;
 }
-#about .container .card-container {
-  height: 40em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
+.card-container {
   flex-basis: 60%;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  padding-left: 2em;
-  padding-right: 2em;
 }
-#about .container .card-container-fade {
-  position: absolute;
-  width: calc(60% + 2px);
-  height: 40em;
-  pointer-events: none;
-  background-image: 
-    linear-gradient(to left, rgba(57,59,69,0) 0 95%, var(--neutral7) 100%),
-    linear-gradient(to right, rgba(57,59,69,0) 0 95%, var(--neutral7) 100%);
+/*#personal-experience .card-container {
+  transform: 
+    translateY(-2em)
+    rotateZ(2.5deg);
 }
-#about .container .body {
+#job-experience .card-container {
+  transform: 
+    translateY(-2em)
+    rotateZ(-2.5deg);
+}*/
+.experience-description {
   flex-basis: 40%;
-}
-#job-experience .body {
-  text-align: right;
-}
-.card-container .card {
-  height: 90%;
-  flex: 0 0 20em;
-  /*background-image: var(--neutral8);*/
-  background: url("/assets/graphics/HexagonsBackground.png") center center no-repeat;
-  background-size: cover;
-  display: relative;
-  margin-right: 1em;
-  border-radius: 1em;
-  box-shadow:
-    rgba(black, 0.66) 0 30px 60px 0,
-    inset #333 0 0 0 5px,
-    inset rgba(white, 0.5) 0 0 0 6px;
-  /*transition: 1s;*/
-  position: relative;
-  transform: perspective(200px);
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-.card-inside {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.5;
-  margin: 0.5em;
-  width: calc(100% - 1em);
-  height: calc(100% - 1em);
-  border: solid;
-  border-color: var(--neutral7);
-  border-radius: 1em;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  transition:
-    1s,
-    opacity 5s 1s;
-  pointer-events: none;
-}
-.card-overlay {
-  position: absolute;
-  top: -5%;
-  left: -5%;
-  width: 110%;
-  height: 110%;
-  background: url("/assets/graphics/EngineerCaptureEevee.png") bottom left no-repeat;
-  background-size: 115%;
-  z-index: 3;
-  -webkit-transform:translateZ(20px);
-  transform:translateZ(20px);
-}
-.card .body {
-  position: absolute;
-  margin: 0.5em;
-  padding: 0 2em 0 2em;
-  z-index: 3;
-  -webkit-transform:translateZ(20px);
-  transform:translateZ(20px);
-  text-align: left !important;
-  width: calc(100% - 1em);
-  overflow-wrap: break-word;
-  white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
-  white-space: pre-wrap;      /* current browsers */
-}
-.card .body h1 {
-  height: 0;
-  font-size: 2.5em !important;
-  color: var(--neutral4)
-}
-.card .body p {
-  height: 0;
-  font-size: 1em !important;
-}
-.card-container .card:last-child {
-  margin-right: 0;
+  height: calc(0.85* 40em);
 }
 
 /*--------------------------------------------------------------

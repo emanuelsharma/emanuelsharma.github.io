@@ -1,0 +1,178 @@
+/*Base*/
+.card-container {
+  height: 40em;
+  padding-left: 2em;
+  padding-right: 2em;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.card-container.left {
+  justify-content: center;
+}
+.card-container.right {
+  justify-content: center;
+}
+.card {
+  filter: brightness(85%);
+  display: relative;
+  height: 80%;
+  flex: 0 0 20em;
+
+  border-radius: 1em;
+  background-color: var(--neutral75);
+  background-size: cover;
+  box-shadow:
+    -1em -0.5em 2rem 0 #00000088,
+    0 0 4rem 2rem #00000070 inset,
+    0 0 6rem 2rem #ffffff15 inset;
+
+  transition: 0.3s;
+  transform-origin: bottom center;
+  transform:  
+    perspective(1000px)
+    rotateZ(0deg);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.card-inside {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: calc(100% - 1em);
+  height: calc(100% - 1em);
+  margin: 0.5em;
+
+  opacity: 0.5;
+  border: solid;
+  border-color: var(--neutral7);
+  border-radius: 1em;
+}
+.card-overlay {
+  position: absolute;
+  z-index: 3;
+
+  width: 100%;
+  height: 100%;
+
+  -webkit-transform:translateZ(10px);
+  transform:translateZ(10px);
+}
+.card:hover {
+  filter: brightness(100%);
+  transform:
+    perspective(150px)
+    rotateZ(2deg)
+    rotateY(0.5deg)
+    scale(1);
+  box-shadow:
+    -1.5em -1em 2.5rem 0 #00000055,
+    0 0 4rem 2rem #00000070 inset,
+    0 0 6rem 2rem #ffffff15 inset;
+  /*animation: teeter 4s linear 0.3s infinite;*/
+}
+.card:hover~.card {
+    transform: 
+      translateX(13em)
+      rotateZ(-4deg);
+}
+.card:nth-child(2)~.card {
+  margin-left: -15em;
+}
+/*Body*/
+.card .body {
+  position: absolute;
+  width: calc(100% - 1em);
+  margin: 0.5em;
+  padding: 0 2em 0 2em;
+  z-index: 3;
+
+  color: var(--neutral4);
+  text-align: left !important;
+
+  -webkit-transform: translateZ(10px);
+  transform: translateZ(10px);
+  overflow-wrap: break-word;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+}
+.card .body h1 {
+  font-size: 2.5em !important;
+}
+.card .body p {
+  font-size: 1em !important;
+  line-height: 0.75em;
+}
+/*Card types*/
+.card.hexagons {
+  background: url("/assets/graphics/HexagonsBackground.png") center center no-repeat;
+}
+.card.hexagons .card-overlay {
+  background: url("/assets/graphics/EngineerCaptureEevee.png") bottom left no-repeat;
+  background-size: 115%;
+}
+.card.unity .card-overlay {
+  background: url("/assets/graphics/unity.png") bottom right no-repeat;
+  background-size: 50%;
+}
+.card.autodesk .card-overlay {
+  background: url("/assets/graphics/autodesk.png") bottom right no-repeat;
+  background-size: 50%;
+}
+.card.eidos .card-overlay {
+  background: url("/assets/graphics/eidos.png") bottom right no-repeat;
+  background-size: 50%;
+}
+.card.cover .card-inside {
+  background: url("/assets/graphics/dice.png") center center no-repeat;
+  background-size: 50%;
+}
+/*Animations*/
+@keyframes teeter {
+  0%    { transform: 
+            perspective(150px) 
+            translateY(-1rem)
+            rotateZ(-2.5deg)
+            rotateY(0deg)
+            rotateX(0deg); 
+        }
+  25%   { transform: 
+            perspective(150px) 
+            translateY(-1rem)
+            rotateZ(-2.5deg)
+            rotateY(1deg)
+            rotateX(1deg); 
+        }
+  50%   { transform: 
+            perspective(150px) 
+            translateY(-1rem)
+            rotateZ(-2.5deg)
+            rotateY(0deg)
+            rotateX(0deg); 
+        }
+  75%   { transform: 
+            perspective(150px) 
+            translateY(-1rem)
+            rotateZ(-2.5deg)
+            rotateY(-1deg)
+            rotateX(-1deg); 
+        }
+}
+/*
+.card-container-fade {
+  position: absolute;
+  width: calc(60% + 2px);
+  height: 40em;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to left, rgba(57,59,69,0) 0 95%, var(--neutral7) 100%),
+    linear-gradient(to right, rgba(57,59,69,0) 0 95%, var(--neutral7) 100%);
+}
+*/

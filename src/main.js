@@ -51,6 +51,30 @@ $('.social-links').ready(function(){
     })
 })
 
+$('#personal-experience').ready(function(){
+  $('#personal-experience .card').hover(function(){
+      let cardType = $(this).attr('class').split(' ')[1];
+      $("#personal-experience .experience-description .cover").removeClass('active');
+      $("#personal-experience .experience-description ."+cardType).addClass('active');
+  },function() {
+      let cardType = $(this).attr('class').split(' ')[1];
+      $("#personal-experience .experience-description ."+cardType ).removeClass('active');
+      $("#personal-experience .experience-description .cover").addClass('active');
+  });
+});
+
+$('#job-experience').ready(function(){
+  $('#job-experience .card').hover(function(){
+      let cardType = $(this).attr('class').split(' ')[1];
+      $("#job-experience .experience-description .cover").removeClass('active');
+      $("#job-experience .experience-description ."+cardType).addClass('active');
+  },function() {
+      let cardType = $(this).attr('class').split(' ')[1];
+      $("#job-experience .experience-description ."+cardType ).removeClass('active');
+      $("#job-experience .experience-description .cover").addClass('active');
+  });
+});
+
 /*
 $('.card-container').bind('mousewheel DOMMouseScroll', function(event) {
   event.preventDefault()

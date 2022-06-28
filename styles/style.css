@@ -230,7 +230,7 @@ p {
   background-color: var(--neutral7);
   background-size: cover;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
 }
 #about .container {
   margin-top: 5em;
@@ -252,19 +252,27 @@ p {
 .card-container {
   flex-basis: 60%;
 }
-/*#personal-experience .card-container {
+#personal-experience .card-container {
   transform: 
+    translateX(-5em)
     translateY(-2em)
-    rotateZ(2.5deg);
+    scale(1.2);
 }
 #job-experience .card-container {
-  transform: 
-    translateY(-2em)
-    rotateZ(-2.5deg);
-}*/
+  transform:
+    translateX(2em)
+    translateY(2em)
+    scale(1.2);
+}
 .experience-description {
   flex-basis: 40%;
   height: calc(0.85* 40em);
+}
+.experience-description > * {
+  display: none;
+}
+.experience-description > .active {
+  display: block;
 }
 
 /*--------------------------------------------------------------

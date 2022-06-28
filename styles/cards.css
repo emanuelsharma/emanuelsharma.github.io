@@ -1,8 +1,8 @@
 /*Base*/
 .card-container {
   height: 40em;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 20em;
+  padding-right: 20em;
 
   display: flex;
   flex-direction: row;
@@ -14,10 +14,10 @@
   transform-style: preserve-3d;
 }
 .card-container.left {
-  justify-content: center;
+  justify-content: left;
 }
 .card-container.right {
-  justify-content: center;
+  justify-content: right;
 }
 .card {
   filter: brightness(85%);

@@ -1,0 +1,25 @@
+.heading-top-line {
+  position: absolute;
+  margin-left:-24px;
+  width: 100%;
+  max-width: 118px;
+  min-height: 5px;
+  margin-bottom: 24px;
+  background-color: var(--neutral1);
+}
+.heading-top-line.large {
+  max-width: 148px;
+  min-height: 8px;
+  margin-bottom: 48px;
+}
+.heading-vert-line {
+  margin-left:-24px;
+  position: absolute;
+  height: 100%;
+  max-height: 32px;
+  min-width: 8px;
+  background-color: var(--neutral1);
+}
+.heading-line-spacing {
+  height: 24px;
+}

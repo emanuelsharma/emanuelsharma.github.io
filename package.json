@@ -1,8 +1,12 @@
 {
   "name": "Portfolio",
+  "homepage": "https://emanuelsharma.github.io/",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html --open"
+    "start": "parcel index.html --open",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d dist",
+    "build": "parcel build index.html"
   },
   "dependencies": {
     "@react-three/fiber": "^8.10.1",
@@ -18,6 +22,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
-    "parcel-bundler": "^1.12.5"
+    "parcel-bundler": "^1.12.5",
+    "gh-pages": "^5.0.0"
   }
 }

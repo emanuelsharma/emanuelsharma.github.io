@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import Background from './back';
 
 const portraitPath = require('./portrait.glb');
 
@@ -55,7 +56,7 @@ const Body = styled.div`
 
 const HeroContainer = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: #c5edd0;
 `;
 
@@ -63,9 +64,8 @@ const PortraitContainer = styled.div`
     position: absolute;
     right: 0;
     top: 0;
-    width: 40%;
-    height: 100%;
-    z-index: 2;
+    width: 80%;
+    height: 100vh;
 `;
 const Divider = styled.div`
     float: left;
@@ -157,6 +157,9 @@ const Portrait = () => {
 
 const Hero = () => (
     <HeroContainer>
+        <PortraitContainer>
+            <Background />
+        </PortraitContainer>
         <AnimatedBackground/>
         <Title>
             Emanuel
@@ -169,11 +172,6 @@ const Hero = () => (
             <Button>See Details</Button>
             <Button>Contact</Button>
         </div>
-        <PortraitContainer>
-            <Canvas camera={{near: 0.00001}}>
-                <Portrait/>
-            </Canvas>
-        </PortraitContainer>
     </HeroContainer>
 );
 

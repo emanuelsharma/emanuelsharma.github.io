@@ -2,15 +2,14 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import Background from './back';
+import Background from './back/back.js';
 
 const portraitPath = require('./portrait.glb');
 
 const Title = styled.div`
-    position: absolute;
-    z-index: 2;
-    left: 0;
-    top: 0;
+    width: 30vw;
+    position: relative;
+    z-index: 1;
     padding: 1rem;
     font-family: 'Arges', sans-serif;
     font-size: 15rem;
@@ -23,11 +22,11 @@ const Button = styled.button`
 position: relative;
     width: 150px;
     margin-right: 1rem;
-    background-color: #fde8c6;
+    background-color: transparent;
     border: 3px solid #fde8c6;
     border-radius: 0.5em;
     //box-shadow: #422800 4px 4px 0 0;
-    color: #7abdae;
+    color: #fde8c6;
     cursor: pointer;
     display: inline-block;
     font-weight: 600;
@@ -62,10 +61,10 @@ const HeroContainer = styled.div`
 
 const PortraitContainer = styled.div`
     position: absolute;
-    right: 0;
+    left: 0;
     top: 0;
-    width: 80%;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 `;
 const Divider = styled.div`
     float: left;
@@ -160,7 +159,7 @@ const Hero = () => (
         <PortraitContainer>
             <Background />
         </PortraitContainer>
-        <AnimatedBackground/>
+        {/*<AnimatedBackground/>*/}
         <Title>
             Emanuel
             Sharma
@@ -168,7 +167,7 @@ const Hero = () => (
                 Software Developer
             </Body>
         </Title>
-        <div style={{zIndex: '1', padding: '1rem', position: 'absolute', bottom: '0', left: '0', display: 'flex', height: '64px'}}>
+        <div style={{padding: '1rem', display: 'flex', height: '64px'}}>
             <Button>See Details</Button>
             <Button>Contact</Button>
         </div>

@@ -59,7 +59,7 @@ function windowResized(p5) {
 function draw(p5) {
   p5.clear();
   if (state === 0) {
-    orbitSim.draw(p5, orbitLayer, orbitLayer.width/2, orbitLayer.height/2, 0.01);
+    orbitSim.draw(p5, orbitLayer, orbitLayer.width/2, orbitLayer.height/2, 0.005);
   }
   else {
     orbitSim.erase(p5, orbitLayer, orbitLayer.width/2, orbitLayer.height/2, 0.01);

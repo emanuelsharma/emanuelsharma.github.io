@@ -8,6 +8,7 @@ flex-direction: column;
 align-content: stretch;
 margin-top: 1rem;
 `;
+
 const Header = styled.h3`
   font-family: sans-serif;
   font-size: 1rem;
@@ -19,6 +20,7 @@ const Header = styled.h3`
   //font-weight: 800;
   //text-transform: uppercase;
 `;
+
 const Body = styled.div`
   width: fit-content;
   padding: 0.5rem;
@@ -29,6 +31,7 @@ const Body = styled.div`
   flex-direction: ${props => props.$column===true ? "column" : "row"};
   gap: 0.5rem;
 `;
+
 const Item = styled.div`
   background-color: #436b62;
   color: #fde8c6;
@@ -51,6 +54,7 @@ const Item = styled.div`
     transform: translate(0, -1px) scale(1.02);
   }
 `;
+
 const HighlightedItem = styled(Item)`
   animation: float 4s ease-in-out infinite, flash 1s ease-in-out infinite;
   animation-direction: normal, alternate;
@@ -106,11 +110,15 @@ export default ({column, title, items=[]}) => (
   <SectionContainer>
     <Header>{title}</Header>
     <Body $column={column}>
-      {items.map(item => item.highlighted ? (<HighlightedItem>
-        {item.text}
-      </HighlightedItem>) : (<Item>
-        {item.text}
-      </Item>))}
+      {items.map((item, index) => (<div key={index.toString()}>
+          {item.highlighted ? 
+            (<HighlightedItem>
+              {item.text}
+            </HighlightedItem>) : 
+            (<Item>
+              {item.text}
+            </Item>)}
+      </div>))}
     </Body>
   </SectionContainer>
 );

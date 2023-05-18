@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Hero from "./hero/hero";
 import Resume from "./resume/resume";
@@ -16,13 +16,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const App = () => (
+const App = () => {
+  const [resumeOpen, setResumeOpen] = useState(false);
+
+  return (
     <>
-        <GlobalStyle/>
-        <FontStyles/>
-        <Hero/>
-        <Resume />
+      <GlobalStyle/>
+      <FontStyles/>
+      <Hero onResumeOpen={() => setResumeOpen(true)}/>
+      <Resume open={resumeOpen} onResumeClose={() => setResumeOpen(false)}/>
     </>
-)
+  );
+}
 
 export default App;

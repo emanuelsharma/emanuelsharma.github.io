@@ -12,11 +12,6 @@ const HeaderContainer = styled.div`
   user-select: none; /* Standard */
 `;
 
-const TitleContainer = styled.div`
-  position: relative;
-  display: flex;
-`;
-
 const Back = styled.div`
   position: absolute;
   top: -2rem;
@@ -34,6 +29,11 @@ const Front = styled.div`
   position: relative;
   background-color: #436b62;
   color: #fde8c6;
+`;
+
+const TitleContainer = styled.div`
+  position: relative;
+  display: flex;
 `;
 
 const Title = styled.div`

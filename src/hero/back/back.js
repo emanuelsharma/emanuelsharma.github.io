@@ -21,11 +21,13 @@ function setup(p5, canvasParentRef) {
 
 function reset(p5) {
   const canvasSize = 2.5*p5.max(p5.height, p5.width);
-  blobRadius = p5.min(0.6*p5.height, 1.5*p5.width);
+  blobRadius = p5.max(p5.height, p5.width) > 1000
+    ? p5.min(0.7*p5.height, 0.7*p5.width) 
+    : p5.max(0.65*p5.height, 0.65*p5.width);
   orbitSimRadius = 4*blobRadius;
 
   orbitLayer = p5.createGraphics(canvasSize, canvasSize);
-  orbitSim = new OrbitSim(p5, [p5.color(greenA), p5.color(greenB)], blobRadius + 20, 4*blobRadius, 10, 20, 2, 40, 0.025, 0.05, 2);
+  orbitSim = new OrbitSim(p5, [p5.color(greenA), p5.color(greenB)], blobRadius + 20, 3*blobRadius, 10, 20, 2, 40, 0.03, 0.05, 2);
 
   createBlob(p5);
 }

@@ -8,8 +8,8 @@ const ResumeOut = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: ${props => props.$open===true ? "flex" : "flex"};
   pointer-events: ${props => props.$open===true ? "auto" : "none"};
   background-color: ${props => props.$open===true ? "rgba(0,0,0,0.8)" : "rgba(0,0,0,0)"};
@@ -31,7 +31,7 @@ const ResumeLeft = styled.div`
   transform: ${props => props.$open===true ? "" : "translateX(-100%)"};
   transition: all 1s ease-in-out;
   flex-direction: column;
-  align-items: start;
+  align-items: stretch;
   gap: 1rem;
   overflow-y: scroll;
   -ms-overflow-style: none;  /* IE and Edge */
@@ -63,12 +63,10 @@ const Blurb = styled.div`
   height: 100%;
   text-align: left;
   font-family: sans-serif;
-  align-self: end;
   display: flex;
   flex-direction: column;
-  height: 100%;
   gap: 0.1em;
-  flexShrink: 1;
+  flex: 1;
 `;
 
 const WideBio = styled.div`
@@ -101,18 +99,9 @@ const NarrowBio = styled.div`
 `
 
 const PortraitContainer = styled.div`
-  width: 15vw;
+  position: relative;
+  width: 100%;
   flex: 1;
-  overflow: hidden;
-  @media screen and (min-width: 500px) {
-    width: 20vw;
-  }
-  @media screen and (min-width: 1000px) {
-    width: 15vw;
-  }
-  @media screen and (min-width: 1500px) {
-    width: 20vw;
-  }
 `
 
 const Resume = ({open, onResumeClose}) => {

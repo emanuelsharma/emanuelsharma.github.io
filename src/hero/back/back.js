@@ -27,7 +27,7 @@ function reset(p5) {
   orbitSimRadius = 4*blobRadius;
 
   orbitLayer = p5.createGraphics(canvasSize, canvasSize);
-  orbitSim = new OrbitSim(p5, [p5.color(greenA), p5.color(greenB)], blobRadius + 20, 3*blobRadius, 10, 20, 2, 40, 0.03, 0.05, 2);
+  orbitSim = new OrbitSim(p5, [p5.color(greenA), p5.color(greenB)], blobRadius + 20, 3*blobRadius, 10, 20, 2, 40, 0.04, 0.05, 2);
 
   createBlob(p5);
 }

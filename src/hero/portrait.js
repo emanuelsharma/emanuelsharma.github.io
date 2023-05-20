@@ -16,8 +16,8 @@ const Portrait = ({scale = 1.5, flat = false}) => {
       ref.current.rotation.x = 1.5 + Math.cos(t / 4) / 16;
       ref.current.rotation.y =  Math.sin(t / 4) / 8 - 0.2;
       ref.current.rotation.z = (Math.sin(t / 1.5)) / 20 - 0.5;
-      ref.current.position.y = (2 + Math.sin(t / 1.5)) / 10 - 2.5;
-      ref.current.position.x = -2.5;
+      ref.current.position.y = (2 + Math.sin(t / 1.5)) / 10 - 2.25;
+      ref.current.position.x = -1.5;
 
       const crrtTime = new Date().getTime()/1000;
       const hoverProgress = Math.min(Math.max((crrtTime-timeHover)/hoverDuration, 0), 1);

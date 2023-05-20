@@ -2,17 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 const SectionContainer = styled.div`
-width: fit-content;
-display: flex;
-flex-direction: column;
-align-content: stretch;
-margin-top: 1rem;
+  flex-basis: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
 `;
 
-const Header = styled.h3`
+const Header = styled.div`
   font-family: sans-serif;
-  font-size: 1rem;
-  margin: 0;
+  font-size: 0.15em;
+  font-weight: bold;
   padding: 0.1em 0.5em;
   background-color: #fde8c6;
   color: #436b62;
@@ -22,20 +22,21 @@ const Header = styled.h3`
 `;
 
 const Body = styled.div`
-  width: fit-content;
-  padding: 0.5rem;
+  font-size: 0.12em;
+  padding: 0.5em;
   background-color: #63877c;
   border-radius: 0 0 4px 4px;
   font-family: sans-serif;
   display: flex;
   flex-direction: ${props => props.$column===true ? "column" : "row"};
-  gap: 0.5rem;
+  gap: 0.5em;
+  align-content: stretch;
 `;
 
 const Item = styled.div`
   background-color: #436b62;
   color: #fde8c6;
-  padding: 0.25rem;
+  padding: 0.5em;
   overflow: hidden;
   outline: #fde8c6 solid 2px;
   white-space: pre-line;

@@ -4,7 +4,11 @@ import styled from 'styled-components';
 const HeaderContainer = styled.div`
   position: relative;
   display: flex;
-  margin: 2rem;
+
+  font-size: calc(max(14vw, 14vh));
+  @media screen and (min-width: 1000px), screen and (min-height: 1000px) {
+      font-size: calc(min(16vw, 16vh));
+  }
 
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
@@ -13,13 +17,12 @@ const HeaderContainer = styled.div`
 `;
 
 const Back = styled.div`
-  position: absolute;
-  top: -2rem;
-  left: -2rem;
-  padding: 2rem;
-  padding-right: 1rem;
+  position: relative;
+  padding: 0.15em;
+  padding-right: 0.1em;
   background-color: #fde8c6;
   color: #436b62;
+  height: fit-content;
   //--clip: circle(50% at 10% 10%);
   //-webkit-clip-path: var(--clip);
   //clip-path: var(--clip);
@@ -41,16 +44,18 @@ const Title = styled.div`
   text-align: left;
   font-family: 'Arges', sans-serif;
   text-transform: uppercase;
-  font-size: 10rem;
-  line-height: 0.8em;
+  font-size: 1em;
+  line-height: 0.8;
 `;
 
 const Sub = styled.div`
   font-size: 0.4em;
-  line-height: 0.85em;
+  line-height: 0.85;
 `;
 
 const Contact = styled.div`
+  font-size: 0.1em; 
+  line-height: 0.5em;
   padding: 3px;
   display: flex;
   flex-direction: column;
@@ -80,9 +85,6 @@ const ResumeHeader = () => {
 
 export default () => (
   <HeaderContainer>
-    <Front>
-      <ResumeHeader/>
-    </Front>
     <Back>
       <ResumeHeader/>
     </Back>

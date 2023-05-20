@@ -6,7 +6,6 @@ import { RiLinkedinBoxFill } from '@react-icons/all-files/ri/RiLinkedinBoxFill';
 
 const HeroContainer = styled.div`
     position: relative;
-    transform-origin: top left;
     font-size: calc(max(16vw, 16vh));
     @media screen and (min-width: 1000px), screen and (min-height: 1000px) {
         font-size: calc(min(18vw, 18vh));

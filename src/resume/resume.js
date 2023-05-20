@@ -70,7 +70,7 @@ const Blurb = styled.div`
 `;
 
 const WideBio = styled.div`
-  font-size: calc(max(0.125em,1.25rem));
+  font-size: calc(max(0.125em,1.2rem));
   padding: 0 1em;
   display: none;
   @media screen and (min-width: 500px) {
@@ -101,6 +101,7 @@ const NarrowBio = styled.div`
 const PortraitContainer = styled.div`
   position: relative;
   width: 100%;
+  max-width: 15rem;
   flex: 1;
 `
 

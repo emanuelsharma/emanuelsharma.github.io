@@ -7,7 +7,7 @@ const portraitPath = require('./portrait.glb');
 let timeHover = -1;
 const hoverDuration = 2;
 
-const Portrait = ({scale = 2, flat = false}) => {
+const Portrait = ({scale = 3, flat = false}) => {
   const ref = useRef();
   const {nodes, materials} = useLoader(GLTFLoader, portraitPath);
   const { camera, size } = useThree();
@@ -19,9 +19,9 @@ const Portrait = ({scale = 2, flat = false}) => {
       ref.current.rotation.x = 1.75 + Math.cos(t / 4) / 16;
       ref.current.rotation.y =  Math.sin(t / 4) / 8 - 0.2;
       ref.current.rotation.z = (Math.sin(t / 1.5)) / 20 - 0.5;
-      ref.current.position.y = 0.75 + (2 + Math.sin(t / 1.5)) / 10 - state.size.height/150;
+      ref.current.position.y = -2 + Math.sin(t / 1.5) / 10 - state.size.height/200;
       ref.current.position.x = -state.size.height/800-state.size.width/60;
-      ref.current.position.z = -17;
+      ref.current.position.z = -15;
       console.log(ref.current.position.x);
 
       const crrtTime = new Date().getTime()/1000;
@@ -64,7 +64,7 @@ const handleHover = () => {
 }
 
 export default (props) => (
-  <Canvas style={{width: '120%', height: '120%', position: 'absolute'}} onMouseOver={handleHover}>
+  <Canvas style={{position: 'absolute'}} onMouseOver={handleHover}>
     <Portrait props={props}/>
   </Canvas>
 )

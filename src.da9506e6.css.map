@@ -1,0 +1,1 @@
+{"version":3,"sources":["font.css"],"names":[],"mappings":"AAAA,WACE,sBAAyB,CACzB,8CACF,CAEA,WACE,iBAAoB,CACpB,+CACF","file":"src.da9506e6.css","sourceRoot":"..","sourcesContent":["@font-face {\r\n  font-family: 'Babas Neue';\r\n  src: url('./fonts/BebasNeue-Regular.ttf');\r\n}\r\n\r\n@font-face {\r\n  font-family: 'Arges';\r\n  src: url('./fonts/Arges.woff');\r\n}\r\n"]}

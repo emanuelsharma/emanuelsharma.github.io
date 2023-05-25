@@ -22,7 +22,6 @@ const Portrait = ({scale = 3, flat = false}) => {
       ref.current.position.y = -2 + Math.sin(t / 1.5) / 10 - state.size.height/200;
       ref.current.position.x = -state.size.height/800-state.size.width/60;
       ref.current.position.z = -15;
-      console.log(ref.current.position.x);
 
       const crrtTime = new Date().getTime()/1000;
       const hoverProgress = Math.min(Math.max((crrtTime-timeHover)/hoverDuration, 0), 1);

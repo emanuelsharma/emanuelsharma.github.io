@@ -40,7 +40,7 @@ export default class OrbitSim {
         p5.red(color),
         p5.green(color),
         p5.blue(color),
-        50);
+        80);
       for (const line of lines) 
       {
         if (!(line.progress>0)) continue;
@@ -61,8 +61,8 @@ export default class OrbitSim {
 
         const off = p5.createVector(nextX - prevX, nextY - prevY);
         off.normalize();
-        
-        for (let k = 0; k < 10; k += 1) {
+
+        for (let k = 0; k < 5; k += 1) {
           const a = 2*p5.PI * (p5.noise(prevX, prevY, p5.frameCount + 0.6*k)-0.5);
           const offA = off.copy();
           offA.rotate(a);

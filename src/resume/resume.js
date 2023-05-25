@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import ResumeBody from './resumeBody';
 import ResumeTitle from './resumeTitle';
 import Portrait from '../hero/portrait';
+import Spinner from '../hero/back/spinner';
 
 const ResumeOut = styled.div`
   position: absolute;
@@ -106,6 +107,8 @@ const PortraitContainer = styled.div`
 `
 
 const Resume = ({open, onResumeClose}) => {
+  const [selectedItem, setSelectedItem] = useState();
+
   return (
     <ResumeOut $open={open}>
       <ResumeLeft $open={open}>
@@ -113,7 +116,7 @@ const Resume = ({open, onResumeClose}) => {
           <ResumeTitle/>
           <Blurb>
             <PortraitContainer>
-              <Portrait/>
+              <Spinner/>
             </PortraitContainer>
             <WideBio>
               <div>
@@ -133,9 +136,10 @@ const Resume = ({open, onResumeClose}) => {
             Currently open to work!
           </strong>
         </NarrowBio>
-        <ResumeBody/>
+        <ResumeBody selectedItem={selectedItem} handleItemSelected={setSelectedItem}/>
       </ResumeLeft>
       <ResumeRight onClick={onResumeClose}>
+        {selectedItem?.renderDetails && selectedItem?.renderDetails()}
       </ResumeRight>
     </ResumeOut>
   );

@@ -30,7 +30,9 @@ const Body = styled.div`
   display: flex;
   flex-direction: ${props => props.$column===true ? "column" : "row"};
   gap: 0.5em;
-  align-content: stretch;
+  align-items: stretch;
+  flex-wrap: wrap;
+  flex: 1;
 `;
 
 const Item = styled.div`
@@ -57,12 +59,18 @@ const Item = styled.div`
 `;
 
 const HighlightedItem = styled(Item)`
-  animation: float 4s ease-in-out infinite, flash 1s ease-in-out infinite;
-  animation-direction: normal, alternate;
+  //animation: float 4s ease-in-out infinite, flash 1s ease-in-out infinite;
+  //animation-direction: normal, alternate;
 
   &:hover {
-    animation: float 4s ease-in-out infinite, flashhover 1s ease-in-out infinite;
-    animation-direction: normal, alternate;
+    //animation: float 4s ease-in-out infinite, flashhover 1s ease-in-out infinite;
+    //animation-direction: normal, alternate;
+  }
+
+  background-color: hsl(162, 15%, 35%);
+  color: #fff8d6;
+  &:hover {
+    background-color: hsl(162, 12%, 42%);
   }
 
   @keyframes float {
@@ -107,18 +115,18 @@ const HighlightedItem = styled(Item)`
   }
 `
 
-export default ({column, title, items=[]}) => (
+export default ({column, title, items, handleItemSelected}) => (
   <SectionContainer>
     <Header>{title}</Header>
     <Body $column={column}>
-      {items.map((item, index) => (<div key={index.toString()}>
-          {item.highlighted ? 
-            (<HighlightedItem>
-              {item.text}
-            </HighlightedItem>) : 
-            (<Item>
-              {item.text}
-            </Item>)}
+      {items.map(item => (<div key={item.id} onMouseDown={() => handleItemSelected(item)}>
+        {item.highlighted ? 
+          (<HighlightedItem>
+            {item.text}
+          </HighlightedItem>) : 
+          (<Item>
+            {item.text}
+          </Item>)}
       </div>))}
     </Body>
   </SectionContainer>

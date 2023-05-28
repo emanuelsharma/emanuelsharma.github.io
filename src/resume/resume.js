@@ -11,7 +11,8 @@ const ResumeOut = styled.div`
   right: 0;
   width: 100%;
   height: 100%;
-  display: ${props => props.$open===true ? "flex" : "flex"};
+  display: flex;
+  visibility: ${props => props.$open===true ? "visible" : "hidden"};
   pointer-events: ${props => props.$open===true ? "auto" : "none"};
   background-color: ${props => props.$open===true ? "rgba(0,0,0,0.8)" : "rgba(0,0,0,0)"};
   transition: background-color 0.5s;
@@ -24,7 +25,7 @@ const ResumeOut = styled.div`
 `;
 
 const ResumeLeft = styled.div`
-  flex: 0.75;
+  flex: 0 0 38vw;
   background-color: #436b62;
   padding: calc(5 * min(1vw, 1vh));
   color: #fde8c6;
@@ -52,7 +53,12 @@ const ResumeLeft = styled.div`
 `;
 
 const ResumeRight = styled.div`
+  padding: 0.5em; 
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   flex: 1;
+  overflow: scroll;
 `;
 
 const Header = styled.div`
@@ -102,12 +108,27 @@ const NarrowBio = styled.div`
 const PortraitContainer = styled.div`
   position: relative;
   width: 100%;
-  max-width: 15rem;
   flex: 1;
+`
+
+const NoDetails = styled.div`
+  background-color: #436b62;
+  color: #fde8c6;
+  padding: 0.5em;
+  outline: #fde8c6 solid 2px;
+  border-radius: 4px;
+  font-size: 0.175em;
+  width: fit-content;
 `
 
 const Resume = ({open, onResumeClose}) => {
   const [selectedItem, setSelectedItem] = useState();
+
+  const renderNoDetails = () => (
+    <NoDetails>
+      Nothing to see here for now. Try selecting Hexagons!
+    </NoDetails>
+  )
 
   return (
     <ResumeOut $open={open}>
@@ -116,7 +137,7 @@ const Resume = ({open, onResumeClose}) => {
           <ResumeTitle/>
           <Blurb>
             <PortraitContainer>
-              <Spinner/>
+              <Portrait/>
             </PortraitContainer>
             <WideBio>
               <div>
@@ -140,6 +161,7 @@ const Resume = ({open, onResumeClose}) => {
       </ResumeLeft>
       <ResumeRight onClick={onResumeClose}>
         {selectedItem?.renderDetails && selectedItem?.renderDetails()}
+        {selectedItem && !selectedItem?.renderDetails && renderNoDetails()}
       </ResumeRight>
     </ResumeOut>
   );

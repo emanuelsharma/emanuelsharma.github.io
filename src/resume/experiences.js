@@ -1,9 +1,10 @@
 import React from 'react';
 import {skills, programmingLanguages} from './skills';
+import Hexagons from './hexagons/hexagons';
 
 export const workExperiences = {
   UnityFullTime: {
-    name: 'Unity', 
+    name: 'Unity ', 
     date: '(2021-2023)', 
     description: 
       `Started a new team to bring existing Unity products to the Cloud for widespread use in e-commerce
@@ -21,7 +22,6 @@ export const workExperiences = {
       programmingLanguages.CSharp,
       programmingLanguages.Typescript,
     ],
-    renderDetails: () => (<div>Unity</div>),
   },
   UnityInternship: {
     name: 'Unity (Intern)', 
@@ -36,7 +36,6 @@ export const workExperiences = {
       skills.Jira, 
       programmingLanguages.CSharp,
     ],
-    renderDetails: () => (<div>Unity IN</div>),
   },
   AutodeskInternship: {
     name: 'Autodesk (Intern)', 
@@ -49,7 +48,6 @@ export const workExperiences = {
       programmingLanguages.Cpp,
       programmingLanguages.Python,
     ],
-    renderDetails: () => (<div>Autodesk</div>),
   },
   EidosInternship: {
     name: 'Eidos (Intern)', 
@@ -87,6 +85,6 @@ export const projects = {
       skills.Illustrator, 
       programmingLanguages.CSharp,
     ],
-    renderDetails: () => (<div>Hexagons</div>),
+    renderDetails: () => (<Hexagons/>),
   },
 };

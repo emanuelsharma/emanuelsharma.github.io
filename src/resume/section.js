@@ -33,6 +33,10 @@ const Body = styled.div`
   align-items: stretch;
   flex-wrap: wrap;
   flex: 1;
+  align-content: start;
+  * {
+    width: ${props => props.$column===true ? "calc(100% - 0.5em)" : "auto"};
+  }
 `;
 
 const Item = styled.div`
@@ -59,18 +63,18 @@ const Item = styled.div`
 `;
 
 const HighlightedItem = styled(Item)`
-  //animation: float 4s ease-in-out infinite, flash 1s ease-in-out infinite;
-  //animation-direction: normal, alternate;
+  animation: float 4s ease-in-out infinite, flash 1s ease-in-out infinite;
+  animation-direction: normal, alternate;
 
   &:hover {
-    //animation: float 4s ease-in-out infinite, flashhover 1s ease-in-out infinite;
-    //animation-direction: normal, alternate;
+    animation: float 4s ease-in-out infinite, flashhover 1s ease-in-out infinite;
+    animation-direction: normal, alternate;
   }
 
-  background-color: hsl(162, 15%, 35%);
-  color: #fff8d6;
+  //background-color: hsl(162, 15%, 35%);
+  //color: #fff8d6;
   &:hover {
-    background-color: hsl(162, 12%, 42%);
+    //background-color: hsl(162, 12%, 42%);
   }
 
   @keyframes float {

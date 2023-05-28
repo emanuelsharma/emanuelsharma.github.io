@@ -10,22 +10,18 @@ const hoverDuration = 2;
 const Portrait = ({scale = 3, flat = false}) => {
   const ref = useRef();
   const {nodes, materials} = useLoader(GLTFLoader, portraitPath);
-  const { camera, size } = useThree();
-  camera.near = 10;
-  camera.zoom = 3;
 
   useFrame((state) => {
       const t = state.clock.getElapsedTime();
       ref.current.rotation.x = 1.75 + Math.cos(t / 4) / 16;
       ref.current.rotation.y =  Math.sin(t / 4) / 8 - 0.2;
-      ref.current.rotation.z = (Math.sin(t / 1.5)) / 20 - 0.5;
-      ref.current.position.y = -2 + Math.sin(t / 1.5) / 10 - state.size.height/200;
-      ref.current.position.x = -state.size.height/800-state.size.width/60;
-      ref.current.position.z = -15;
+      ref.current.rotation.z = (Math.sin(t / 1.5)) / 20 - 0.1;
+      ref.current.position.y = -4 + Math.sin(t / 1.5) / 10;
+      ref.current.position.z = -4;
 
       const crrtTime = new Date().getTime()/1000;
       const hoverProgress = Math.min(Math.max((crrtTime-timeHover)/hoverDuration, 0), 1);
-      ref.current.position.x += 2*Math.sin(Math.PI*hoverProgress);
+      ref.current.position.x = 1*Math.sin(Math.PI*hoverProgress);
       ref.current.position.y += 0.5*Math.sin(4*Math.PI*hoverProgress);
       ref.current.rotation.y += 0.25*Math.sin(2*Math.PI*hoverProgress);
       ref.current.rotation.z += 0.75*Math.sin(Math.PI*hoverProgress)
@@ -59,7 +55,6 @@ const handleHover = () => {
   if (crrtTime - hoverDuration > timeHover) {
     timeHover = crrtTime;
   }
-  console.log(crrtTime);
 }
 
 export default (props) => (

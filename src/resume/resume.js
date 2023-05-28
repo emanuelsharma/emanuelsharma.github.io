@@ -53,7 +53,7 @@ const ResumeLeft = styled.div`
 `;
 
 const ResumeRight = styled.div`
-  padding: 0.5em; 
+  padding: calc(5 * min(1vw, 1vh));
   display: flex;
   flex-direction: column;
   align-items: stretch;
